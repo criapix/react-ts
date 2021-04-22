@@ -1,29 +1,18 @@
-import React, { Component } from 'react';
-import './App.css';
+import React from 'react';
 
-import { Clock } from "./component/Clock";
+import './App.scss';
+import Clock from './component/Clock';
 
-
-class App extends Component {
-  clocks: JSX.Element[] = [];
-
-  constructor(props: any) {
-    super(props);
-    this.clocks.push(<Clock />);
-    this.clocks.push(<Clock />);
+export default class App extends React.Component {
+  state = {
+    clocks: [<Clock />, <Clock />]
   }
 
-  componentDidMount() {
-  }
+  render(): JSX.Element {
+    const { clocks } = this.state;
 
-  render() {
-    return (
-      <div className="App">
-        <span>Teste:</span>
-        {this.clocks.map(c => c)}
-      </div>
-    );
+    return <div className="App">
+      {clocks.map((c) => c)}
+    </div>;
   }
 }
-
-export default App;

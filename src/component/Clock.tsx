@@ -1,38 +1,36 @@
 import React from "react";
-import { DateTimeFormatter } from "./DateTimeFormatter";
+
+import DateTimeFormatter from "./DateTimeFormatter";
 
 interface ClockState {
     date: Date
 }
 
-export class Clock extends React.Component<{}, ClockState> {
+export default class Clock extends React.Component<any, ClockState> {
     idInterval!: NodeJS.Timeout;
 
-    constructor(props: any) {
-        super(props);
-        this.state = {
-            date: new Date()
-        };
+    state = {
+        date: new Date()
+    };
 
-    }
-    componentDidMount() {
+    componentDidMount(): void {
         this.idInterval = setInterval(() => {
             this.atualizarRelogio();
         }, 1000);
     }
 
-    componentWillUnmount() {
+    componentWillUnmount(): void {
         clearInterval(this.idInterval);
-
     }
 
-    atualizarRelogio() {
+    atualizarRelogio(): void {
         this.setState({ date: new Date() });
     }
 
-    render() {
+    render(): JSX.Element {
+        const { date } = this.state;
         return <div>
-            <DateTimeFormatter date={this.state.date} />
-        </div>
+            <DateTimeFormatter date={date} />
+        </div>;
     }
 }

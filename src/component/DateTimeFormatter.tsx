@@ -1,10 +1,11 @@
-
 interface DateTimeFormatterProps {
     date: Date
 }
 
-export function DateTimeFormatter(props: DateTimeFormatterProps) {
+export default function DateTimeFormatter(props: DateTimeFormatterProps): JSX.Element {
+    const { date } = props;
+
     return (
-        <div>{props.date.toLocaleString()}</div>
+        <div>{date.toLocaleString()}</div>
     );
 }

@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import { Clock } from "./component/Clock";
+
+
+class App extends Component {
+  clocks: JSX.Element[] = [];
+
+  constructor(props: any) {
+    super(props);
+    this.clocks.push(<Clock />);
+    this.clocks.push(<Clock />);
+  }
+
+  componentDidMount() {
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <span>Teste:</span>
+        {this.clocks.map(c => c)}
+      </div>
+    );
+  }
 }
 
 export default App;

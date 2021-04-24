@@ -4,34 +4,40 @@ import './App.scss';
 import Clock from './component/Clock';
 
 interface AppState {
-  clocks: JSX.Element[]
+  clocks: number[];
 }
 
 export default class App extends React.Component<any, AppState> {
-  constructor(props: any) {
-    super(props);
+  // constructor(props: any) {
+  //   super(props);
 
-    this.adicionarClick = this.adicionarClick.bind(this);
-  }
+  //   this.adicionarClick = this.adicionarClick.bind(this);
+  // }
 
   state = {
-    clocks: [<Clock />, <Clock />]
+    clocks: [1, 2],
   };
 
-  adicionarClick(e: SyntheticEvent): void {
+  adicionarClick = (e: SyntheticEvent): void => {
     e.preventDefault();
 
     this.setState((state) => ({
-      clocks: [...state.clocks, <Clock />]
+      clocks: [...state.clocks, state.clocks.length + 1],
     }));
-  }
+  };
 
   render(): JSX.Element {
     const { clocks } = this.state;
 
-    return <div className="App">
-      {clocks.map((c) => c)}
-      <button onClick={this.adicionarClick} type="button">+</button>
-    </div>;
+    return (
+      <div className="App">
+        {clocks.map((c) => (
+          <Clock key={c.toString()} />
+        ))}
+        <button onClick={this.adicionarClick} type="button">
+          +
+        </button>
+      </div>
+    );
   }
 }

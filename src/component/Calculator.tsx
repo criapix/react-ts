@@ -15,12 +15,8 @@ export default class Calculator extends React.Component<any, CalculatorState> {
     result: 0,
   };
 
-  handlerVar1Change = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    this.setState({ var1: +e.target.value });
-  };
-
-  handlerVar2Change = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    this.setState({ var2: +e.target.value });
+  handlerVarChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    this.setState((state) => ({ ...state, [e.target.name]: +e.target.value }));
   };
 
   handlerOperatorChange = (e: React.ChangeEvent<HTMLSelectElement>): void => {
@@ -56,7 +52,7 @@ export default class Calculator extends React.Component<any, CalculatorState> {
       <form onSubmit={this.handlerSubmit}>
         <input
           name="var1"
-          onChange={this.handlerVar1Change}
+          onChange={this.handlerVarChange}
           type="number"
           value={var1}
         />
@@ -74,7 +70,7 @@ export default class Calculator extends React.Component<any, CalculatorState> {
         </label>
         <input
           name="var2"
-          onChange={this.handlerVar2Change}
+          onChange={this.handlerVarChange}
           type="number"
           value={var2}
         />
